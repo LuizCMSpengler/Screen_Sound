@@ -2,7 +2,7 @@
 string mensagemDeBoasVindas = "Boas vindas ao Screen Sound";
 //List<string> listaDasBandas = new List<string>{ "Creepy Nuts", "Hello Sleepwalkers", "BRADIO", "Amazarshi"};
 Dictionary<string,List<int>> bandasRegistradas = new Dictionary<string,List<int>>();
-bandasRegistradas.Add("Hello Sleepwalkers", new List<int> {10, 9, 10 });
+bandasRegistradas.Add("Hello Sleepwalkers", new List<int> {10, 9, 10, 9});
 bandasRegistradas.Add("Creepy Nuts", new List<int>());
 
 void ExibirLogo()
@@ -40,7 +40,7 @@ void ExibirOpcoesDoMenu()
             break;
         case 3: AvaliarUmaBanda();
             break;
-        case 4: Console.WriteLine("Você digitou a opção " + opcaoEscolhida);
+        case 4: ExibirMedia();
             break;
         case 0: Console.WriteLine("Encerrando o programa");
             break;
@@ -113,12 +113,36 @@ void AvaliarUmaBanda()
     } else
     {
         Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-        Console.WriteLine("Digite um tecla para voltar ao menu principal");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
         Console.ReadKey();
         Console.Clear();
         ExibirOpcoesDoMenu();
     }
 
+}
+
+void ExibirMedia()
+{
+    Console.Clear();
+    ExibirTituloDaOpecao("Média da Banda");
+    Console.Write("Digite o nome da banda que deseja exibir a média: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey (nomeDaBanda))
+    {
+        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
+        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirOpcoesDoMenu();
+    } else
+    {
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
+        Console.Clear();
+        ExibirOpcoesDoMenu();
+    }
 }
 
 ExibirOpcoesDoMenu();
